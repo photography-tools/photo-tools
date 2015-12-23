@@ -1,0 +1,9 @@
+[submodule "java/exiftool"]
+	path = java/exiftool
+	url = https://github.com/atramos/exiftool.git
+[submodule "java/imgscalr"]
+	path = java/imgscalr
+	url = https://github.com/atramos/imgscalr.git
+[submodule "exiftools/pyExifToolGUI"]
+	path = exiftools/pyExifToolGUI
+	url = https://github.com/atramos/pyExifToolGUI
