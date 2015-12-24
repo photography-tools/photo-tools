@@ -10,6 +10,6 @@ I started pulling these into a central location to facilitate re-use for some ot
 ## java
 - exiftool Java API - forked submodule - from https://github.com/thebuzzmedia/imgscalr
 - imgscalr - forked submodule - from https://github.com/thebuzzmedia/exiftool
-- Marvin Framework - 
+- Marvin Framework - http://marvinproject.sourceforge.net/en/index.html
 - MediaUtil - http://mediachest.sourceforge.net/mediautil/
 - ImageResizer - some experimental Java code to display images on the screen, resized to fit
