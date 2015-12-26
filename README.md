@@ -1,6 +1,6 @@
 # photo-tools
 This is a loose collection of code and utilities for working with digital photos, gathered from around the web.
-I started pulling these into a central location to facilitate re-use for some other stuff I wanted to do.
+I started pulling these into a central location for a personal project.
 
 ## exiftools
 - exiftool 10.08 (no source, no git ref) - from http://www.sno.phy.queensu.ca/~phil/exiftool/
@@ -16,3 +16,8 @@ I started pulling these into a central location to facilitate re-use for some ot
 - Marvin Framework - http://marvinproject.sourceforge.net/en/index.html
 - MediaChest - http://sourceforge.net/projects/mediachest
 - MediaUtil - http://mediachest.sourceforge.net/mediautil/
+
+## more links - image similarity stuff
+- Perceptual Image Diff - http://pdiff.sourceforge.net/
+- Perceptual Hash - http://phash.org/
+- Basic Image Comparison - http://mindmeat.blogspot.com.br/2008/07/java-image-comparison.html
