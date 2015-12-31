@@ -1,6 +1,6 @@
 # photo-tools
 This is a loose collection of code and utilities for working with digital photos, gathered from around the web.
-I started pulling these into a central location for a personal project.
+I started pulling these into a central location for a personal project -- the ImageViewer which is also in this repository.
 
 ## exiftools
 - exiftool 10.08 (no source, no git ref) - from http://www.sno.phy.queensu.ca/~phil/exiftool/
