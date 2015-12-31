@@ -1,13 +1,11 @@
-package org.imageviewer;
+package org.imageviewer.app;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -21,46 +19,45 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
-public class AppMain {
+public class AppUI implements IAppUI {
 
 	private JFrame frame;
 	private JPanel centerPanel;
 	private JLabel statusLabel;
+	private AppServices services;
 
-	public AppMain() {
+	public AppUI() {
 		frame = new JFrame();
 		centerPanel = new JPanel();
 		statusLabel = new JLabel("started");
 	}
 
-	public static void main(String[] args) {
-		AppMain am = new AppMain();
-		am.start();
-	}
+	public void start(AppServices svc) {
+		
+		this.services = svc;
 
-	private void start() {
 		addMenu(frame);
 		addStatus(frame.getContentPane());
 
 		frame.setState(Frame.MAXIMIZED_BOTH);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		centerPanel.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 
 		frame.setVisible(true);
-}
+	}
 
-	private void addStatus(Container cpane2) {
+	private void addStatus(Container cpane) {
 		JPanel statusPanel = new JPanel();
 
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		statusPanel.setPreferredSize(new Dimension(cpane2.getWidth(), 16));
+		statusPanel.setPreferredSize(new Dimension(cpane.getWidth(), 16));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		statusPanel.add(statusLabel);
-		cpane2.add(statusPanel, BorderLayout.SOUTH);
+		cpane.add(statusPanel, BorderLayout.SOUTH);
 	}
 
 	private void addMenu(JFrame frame) {
@@ -74,7 +71,7 @@ public class AppMain {
 		eMenuItem.setMnemonic(KeyEvent.VK_E);
 		eMenuItem.setToolTipText("Exit application");
 		eMenuItem.addActionListener(event -> System.exit(0));
-		
+
 		JMenuItem openItem = new JMenuItem("Open");
 		openItem.setMnemonic(KeyEvent.VK_O);
 		openItem.addActionListener(event -> this.actionOpen(event));
@@ -88,17 +85,18 @@ public class AppMain {
 
 	private void actionOpen(ActionEvent event) {
 		JFileChooser fc = new JFileChooser();
-		fc.setCurrentDirectory(new java.io.File(".")); // start at application current directory
+		fc.setCurrentDirectory(new java.io.File(".")); // start at application
+														// current directory
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = fc.showSaveDialog(this.frame);
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    this.onOpen(fc.getSelectedFile());
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			services.onOpen(fc.getSelectedFile());
 		}
 	}
 
-	private void onOpen(File dir) {
-		File files[] = dir.listFiles(file -> file.getName().matches("(?i).*\\.(jpg|jpeg|png|gif|tif|tiff)$"));
-		this.statusLabel.setText(String.format("Found %d images.", files.length));
+	@Override
+	public void setStatus(String status) {
+		this.statusLabel.setText(status);
 	}
 
 }
