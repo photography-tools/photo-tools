@@ -1,6 +1,4 @@
 package org.imageviewer.app;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,47 +20,33 @@ import org.imageviewer.util.ImageResize;
 
 public class ImagePanel extends JPanel {
 	
-	private static GraphicsDevice gd = GraphicsEnvironment
-			.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
 	public void populate(List<File> images) throws IOException {
 		
 		GridLayout gridLayout = new GridLayout(2, 2);
 		
-		Stream<BufferedImage> imgs = images.stream().map(file -> readFile(file));
+		images.stream().forEach(file -> {
+			BufferedImage img = readFile(file);
+			int height = this.getHeight() / 2;
+			int width = this.getWidth() / 2;
+			
+			// crunch horizontally to maintain aspect ratio
+			width = (int) Math.min(width, height * (img.getWidth() * 1.0 / img.getHeight()));
+			
+			ImageIcon icon = new ImageIcon(ImageResize.resizeImageWithHint(img,height, width));
+			JLabel label = new JLabel(icon);
+			this.add(label);
+		});
 
-		Stream<ImageIcon> icons = imgs.map(img -> new ImageIcon(ImageResize.resizeImageWithHint(img,
-				getImageHeight(), getImageWidth())));
-		
-		Stream<JLabel> labels = icons.map(icon -> new JLabel(icon));
-		
-		labels.forEach(label -> this.add(label));
 		this.setLayout(gridLayout);
 
 	}
 
-	private static BufferedImage readFile(File file) {
+	private BufferedImage readFile(File file) {
 		try {
 			return ImageIO.read(file);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	private static int getImageWidth() {
-		return getScreenWidth() / 2;
-	}
-
-	private static int getScreenWidth() {
-		return gd.getDisplayMode().getWidth();
-	}
-
-	private static int getImageHeight() {
-		return getScreenHeight() / 2;
-	}
-
-	private static int getScreenHeight() {
-		return gd.getDisplayMode().getHeight();
 	}
 
 }
