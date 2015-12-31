@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -22,14 +25,14 @@ import javax.swing.border.BevelBorder;
 public class AppUI implements IAppUI {
 
 	private JFrame frame;
-	private JPanel centerPanel;
+	private ImagePanel centerPanel;
 	private JLabel statusLabel;
 	private AppServices services;
 
 	public AppUI() {
 		frame = new JFrame();
-		centerPanel = new JPanel();
-		statusLabel = new JLabel("started");
+		centerPanel = new ImagePanel();
+		statusLabel = new JLabel("Application started. Use File->Open to select a working folder.");
 	}
 
 	public void start(AppServices svc) {
@@ -97,6 +100,11 @@ public class AppUI implements IAppUI {
 	@Override
 	public void setStatus(String status) {
 		this.statusLabel.setText(status);
+	}
+
+	@Override
+	public void setWorkingImages(List<File> images) throws IOException {
+		centerPanel.populate(images);
 	}
 
 }
