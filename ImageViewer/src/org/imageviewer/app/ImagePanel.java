@@ -17,6 +17,7 @@ import org.imageviewer.util.ImageResize;
  *
  */
 
+@SuppressWarnings("serial")
 public class ImagePanel extends JPanel {
 	
 	public void populate(List<File> images) throws IOException {
