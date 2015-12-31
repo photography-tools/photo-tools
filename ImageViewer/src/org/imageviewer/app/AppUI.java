@@ -38,6 +38,7 @@ public class AppUI implements IAppUI {
 		statusLabel = new JLabel("Application started. Use File->Open to select a working folder.");
 	}
 
+	@Override
 	public void start(IAppServices svc) {
 		
 		this.services = svc;
@@ -108,6 +109,7 @@ public class AppUI implements IAppUI {
 	@Override
 	public void setWorkingImages(List<File> images) throws IOException {
 		centerPanel.populate(images);
+		centerPanel.revalidate();
 	}
 
 }
