@@ -1,4 +1,4 @@
-package org.imageviewer.app;
+package org.imageviewer.api;
 
 import java.io.File;
 import java.io.IOException;

@@ -7,5 +7,5 @@ public class AppMain {
 		AppServices svc = new AppServices(ui);
 		ui.start(svc);
 	}
-
+	
 }

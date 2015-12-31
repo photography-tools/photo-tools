@@ -22,12 +22,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
+import org.imageviewer.api.IAppServices;
+import org.imageviewer.api.IAppUI;
+
 public class AppUI implements IAppUI {
 
 	private JFrame frame;
 	private ImagePanel centerPanel;
 	private JLabel statusLabel;
-	private AppServices services;
+	private IAppServices services;
 
 	public AppUI() {
 		frame = new JFrame();
@@ -35,7 +38,7 @@ public class AppUI implements IAppUI {
 		statusLabel = new JLabel("Application started. Use File->Open to select a working folder.");
 	}
 
-	public void start(AppServices svc) {
+	public void start(IAppServices svc) {
 		
 		this.services = svc;
 

@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class AppServices {
+import org.imageviewer.api.IAppServices;
+import org.imageviewer.api.IAppUI;
+
+public class AppServices implements IAppServices {
 	
 	private IAppUI ui;
 
