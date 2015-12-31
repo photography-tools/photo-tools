@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -25,11 +24,13 @@ import javax.swing.border.BevelBorder;
 public class AppMain {
 
 	private JFrame frame;
-	private Container cpane;
+	private JPanel centerPanel;
+	private JLabel statusLabel;
 
 	public AppMain() {
 		frame = new JFrame();
-		cpane = frame.getContentPane();
+		centerPanel = new JPanel();
+		statusLabel = new JLabel("started");
 	}
 
 	public static void main(String[] args) {
@@ -39,33 +40,26 @@ public class AppMain {
 
 	private void start() {
 		addMenu(frame);
-		addStatus(cpane);
+		addStatus(frame.getContentPane());
 
 		frame.setState(Frame.MAXIMIZED_BOTH);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-		// frame.add(label1);
-		// frame.add(label2);
-		// frame.add(label3);
-		// frame.add(label4);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
-		mainPanel.setBackground(Color.GREEN);
-		cpane.add(mainPanel, BorderLayout.CENTER);
+		centerPanel.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
+		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 
 		frame.setVisible(true);
 }
 
 	private void addStatus(Container cpane2) {
 		JPanel statusPanel = new JPanel();
+
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		statusPanel.setPreferredSize(new Dimension(cpane2.getWidth(), 16));
 		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
-		JLabel statusLabel = new JLabel("status");
 		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		statusPanel.add(statusLabel);
-		statusPanel.setBackground(Color.WHITE);
 		cpane2.add(statusPanel, BorderLayout.SOUTH);
 	}
 
@@ -104,7 +98,7 @@ public class AppMain {
 
 	private void onOpen(File dir) {
 		File files[] = dir.listFiles(file -> file.getName().matches("(?i).*\\.(jpg|jpeg|png|gif|tif|tiff)$"));
-		
+		this.statusLabel.setText(String.format("Found %d images.", files.length));
 	}
 
 }
