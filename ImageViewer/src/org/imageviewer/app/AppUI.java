@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -19,7 +18,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.JSlider;
 import javax.swing.JScrollPane;
@@ -65,16 +63,16 @@ public class AppUI implements IAppUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		scrollPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight() - 128));
-		frame.add(scrollPane, BorderLayout.NORTH);		
-		frame.add(slider, BorderLayout.CENTER);		
+		frame.add(scrollPane, BorderLayout.NORTH);
     }
 
 	private void addStatus(Container cpane){
 		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		statusPanel.setPreferredSize(new Dimension(cpane.getWidth(), 16));
-		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
-		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		statusPanel.add(statusLabel);
+		statusPanel.setPreferredSize(new Dimension(cpane.getWidth(), 64));
+		statusPanel.setLayout(new BorderLayout());
+		slider.setPreferredSize(new Dimension(300,statusPanel.getHeight()));
+		statusPanel.add(statusLabel,BorderLayout.WEST);
+		statusPanel.add(slider,BorderLayout.EAST);
 		cpane.add(statusPanel, BorderLayout.SOUTH);
 	}
 
