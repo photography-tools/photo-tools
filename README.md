@@ -11,8 +11,7 @@ I started pulling these into a central location while working on a personal proj
 - exiftool Java API - forked submodule - from https://github.com/thebuzzmedia/imgscalr
 - imgscalr - forked submodule - from https://github.com/thebuzzmedia/exiftool
 
-## Original code
-- ImageResizer - some experimental Java code to display images on the screen, resized to fit
+## Original code (now split into separate projects)
 - ImageViewer - https://github.com/atramos/ImageViewer
 - ImageDecimator - https://github.com/atramos/ImageDecimator
 
