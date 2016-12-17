@@ -1,19 +1,20 @@
 # photo-tools
 This is a loose collection of code and utilities for working with digital photos, gathered from around the web.
-I started pulling these into a central location for a personal project (ImageViewer). Where possible (and allowed by license) the collected code has been copied into here, to protect from relocation or disappearance. Some larger stuff is just linked. 
+I started pulling these into a central location while working on a personal project. Code has been copied into here, to protect from relocation or disappearance, as often happens with obscure projects.
 
-## ImageViewer (original code)
-- see [ImageViewer README](ImageViewer)
-
-## exiftools (copied)
+## Copied Code
 - exiftool 10.08 (no source, no git ref) - from http://www.sno.phy.queensu.ca/~phil/exiftool/
 - exiftoolGUI v5.1.6 (no source, no git ref) - from http://u88.n24.queensu.ca/~bogdan/
-- pyExifToolGUI (forked submodule) - from https://hvdwolf.github.io/pyExifToolGUI/
 
-## java (copied)
+## Forked Code (copied on GitHub)
+- pyExifToolGUI (forked submodule) - from https://hvdwolf.github.io/pyExifToolGUI/
 - exiftool Java API - forked submodule - from https://github.com/thebuzzmedia/imgscalr
 - imgscalr - forked submodule - from https://github.com/thebuzzmedia/exiftool
+
+## Original code
 - ImageResizer - some experimental Java code to display images on the screen, resized to fit
+- ImageViewer - https://github.com/atramos/ImageViewer
+- ImageDecimator - https://github.com/atramos/ImageDecimator
 
 ## links
 - Marvin Framework - http://marvinproject.sourceforge.net/en/index.html
